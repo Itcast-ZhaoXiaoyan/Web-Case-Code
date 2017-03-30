@@ -10,9 +10,8 @@
 			}
 			#taolun{
 				margin: 0 auto;
-				width: 690px; height: 223px;
-				border-top: 20px solid #C0C0C0;
-				border-bottom: 10px solid #ccc;
+				width: 690px; height: 253px;
+				border: 1px solid #C0C0C0;
 			}
 			#taolun_list{
 				width: 100%;
@@ -41,11 +40,37 @@
 			#taolun_list a:hover{
 				text-decoration: underline;
 			}
+			ul.tabs{
+				margin: 0; padding: 0;
+				list-style: none;
+			}
+			.tabs li{
+				padding:0 10px;
+				background: #DEDFDE;
+				float: left;
+				border-right:1px solid #fff;
+				font: 14px "微软雅黑";
+				width: 96px;
+				height: 32px; line-height: 32px;
+			}
+			.tabs li a{
+				color: #005aa0; 
+				text-decoration: none;
+			}
+			.tabs li a:hover{
+				color: #e4383c;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="taolun">
-			<div class="tabs"></div>
+			<ul class="tabs">
+				<li><a href="#">网友讨论圈</a></li>
+				<li><a href="#">晒单帖</a></li>
+				<li><a href="#">问答帖</a></li>
+				<li><a href="#">圈子帖</a></li>
+				<li><a href="#">讨论帖</a></li>
+			</ul>
 			<table id="taolun_list" class="tl_list">
 				<tr class="tl_th">
 					<td class="tl_th left">主题</td>
