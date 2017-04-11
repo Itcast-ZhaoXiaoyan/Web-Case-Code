@@ -1,0 +1,26 @@
+
+	（2）强制转换：程序员通过主动调用专门函数，执行转换
+1、任意类型 to String ：有两种
+	var str = x.toString();
+JS中，一切数据都有toString方法
+
+	var str = String(x);	——隐式转换
+何时使用：程旭在需要时会自动调用
+
+2、任意类型 to Number :有两种
+
+	var n = Number(x);   ——隐式转换
+
+	String to Number :2种
+		var n = parseInt(str);
+      原理：从str开始位置逐个读取每个字符  直到碰到第一个不是数字的字符时，停止读取，自动忽略开头碰到的空格
+
+
+例如————
+	var width = "12px";
+		width + "2px" ——"12px2px"
+	Number(width) + Number("2px")  ——NaN
+
+	parseInt(width) + parseInt("2px") ——12  2  ——14
+	width = 14+"px"
+	
