@@ -8,7 +8,7 @@ var input = prompt("输入一个字符");
 console.log(
   input>="0" && input <="9"?"数字":
   input>="\u4e00" && input <="\u9fa5"?"是汉字" :
-  input>="a" && input<="z" || input>="A" &&input <="Z" ? "是字母":
+  input>="a" && input<="z"  ||  input>="A" &&input <="Z" ? "是字母":
                           "其他字符"
 );
 
