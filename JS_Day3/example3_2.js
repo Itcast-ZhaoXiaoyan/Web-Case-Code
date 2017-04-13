@@ -4,6 +4,7 @@
   能被400整除
 */
 
+
 var year=prompt("输入年份");
 console.log(
   year%4 ==0 && year%100 !=0 || year%400 ==0 ? "是平年":"是闰年" 
