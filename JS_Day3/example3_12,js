@@ -1,0 +1,11 @@
+var input = prompt("请输入一个算式");
+console.log(eval(input));
+
+/*
+eval:计算字符串格式的表达式的值
+ 或执行字符串格式的js语句
+
+4/0——表示无穷大“Iniatiy”
+
+判断是否有限 isFinite
+*/
