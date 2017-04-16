@@ -17,7 +17,14 @@ var money = prompt("输入金额");
 
 var total = price*count;
 
-(total >= 500) && (total *= 0.8)
+/*第一种——不需要分支结构
+(total >= 500) && (total *= 0.8);
+*/
+
+/*第二种——需要分支结构*/
+if(total >= 500){
+   total *= 0.8;
+}
 
 var change = money - total;
 
