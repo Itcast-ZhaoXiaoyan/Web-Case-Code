@@ -6,7 +6,7 @@
 */
 
 var score = prompt("请输入一个成绩：");
-if(score<100 && score <0){
+if(score<100 || score <0){
    alert("超范围！");
 }
 else if(isNaN(score)){
