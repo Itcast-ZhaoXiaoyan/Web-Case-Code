@@ -13,6 +13,7 @@ function bubble(arr,compare){   //比较器函数
       }
 }
 
+
 /*专门比较任意两个数字的大小*/
 function compareNum(a,b){return a-b;}
 
