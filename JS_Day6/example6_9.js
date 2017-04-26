@@ -32,7 +32,28 @@ var data=[
  
  /*判断游戏是否结束
     如果不满，直接返回false
+    遍历每个元素：
+        如果c!=?，才检查右侧元素
+            若当前元素==右侧元素，返回false
+        如果r!=?，才检查下方元素
+            若当前元素==下方元素，返回fasle
+     如果遍历结束，返回true
  */
  function isGameOver(){
-    
+    if(!isFull()){return false;}
+     for(var r=0;r<4;r++){
+        for(var c=0;c<4;c++){
+              if(c!=3){
+                    if(data[r][c]==data[r][c+1]){
+                           return false;
+                    }
+              }
+              if(r!=3){
+                    if(data[r][c]==data[r+1][c]){
+                           return false;
+                    }
+              }
+        }
+     }
+     return true;
  }
