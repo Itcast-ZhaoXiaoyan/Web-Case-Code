@@ -1,3 +1,6 @@
+/*将encode函数编码后的数字字符串
+    解码回原文
+*/
 function decode(code)
 {
     /*每5位取一次子字符串*/
