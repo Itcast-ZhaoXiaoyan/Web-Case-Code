@@ -77,6 +77,7 @@ public class QuickSort
                 }
            }
             
+            
            sort[i] = key;    //依次找一个以i为下标的数组作为基准值key
            
            //由于i从0到i-1，所以采用递归调用自身函数
