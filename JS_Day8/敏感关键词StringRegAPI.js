@@ -10,8 +10,10 @@ var count=0;
 */
 
 var arr=null;
-while( (arr=str.match(reg))!=null){
+//while( (arr=str.match(reg))!=null){
+while((arr=str.exec(reg)) !=null)
     str=str.replace(reg,arr[0].length==2 ? "**" : "****");
+    count++;
 }
 
 console.log(str);
