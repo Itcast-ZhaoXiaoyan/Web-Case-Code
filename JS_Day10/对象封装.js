@@ -2,16 +2,13 @@ var lilei={
     "sname":"Li Lei",
     "age":12,
     "interSelf":function(){
-        alert("I'm Li Lei,I'm 12");
-    }
-};
-
+        alert("I'm"+this.sname +"I'm"+this.age);
 
 var hmm={
     "sname":"Han Meimei",
     "age":11,
     "interSelf":function(){
-        alert("I'm Han Meimei,I'm 11");
+        alert("I'm"+this.sname +"I'm"+this.age);
     }
 };
 
