@@ -28,6 +28,7 @@ if(!Array.isArray){
           /*call,apply
               call,在调用方法的一瞬间更换调用方法的对象
           */
+        return Object.prototype.toString.call(obj) == "[object Array]";
           
           
     }  
