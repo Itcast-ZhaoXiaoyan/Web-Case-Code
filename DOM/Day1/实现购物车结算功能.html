@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				width: 600px;	border-collapse: collapse;
+				text-align: center;
+			}
+			td,th{border: 1px solid black;}
+			td[colspan="3"]{text-align: right;}
+		</style>
+		<script src="js/购物车结算.js"></script>
+	</head>
+	<body>
+		<table id="data" width="25%" height="100" border="0" cellspacing="1" >
+		<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>iPhone6</td>
+				<td>&yen;4488</td>
+				<td>
+					<!--this指代当前触发事件的元素对象本身
+						事件处理函数中，是否会用到当前元素对象
+					-->
+					<button onclick="calc(this)">-</button>
+					<span>1</span>
+					<button onclick="calc(this)">+</button>
+				</td>
+				<td>&yen;4488</td>
+			</tr>
+			<tr>
+				<td>iPhone6 plus</td>
+				<td>&yen;5288</td>
+				<td>
+					<!--this指代当前触发事件的元素对象本身
+						事件处理函数中，是否会用到当前元素对象
+					-->
+					<button onclick="calc(this)">-</button>
+					<span>1</span>
+					<button onclick="calc(this)">+</button>
+				</td>
+				<td>&yen;5288</td>
+			</tr>
+			<tr>
+				<td>iPad Air 2</td>
+				<td>&yen;4288</td>
+				<td>
+					<!--this指代当前触发事件的元素对象本身
+						事件处理函数中，是否会用到当前元素对象
+					-->
+					<button onclick="calc(this)">-</button>
+					<span>1</span>
+					<button onclick="calc(this)">+</button>
+				</td>
+				<td>&yen;4288</td>
+			</tr>
+			<tr>
+				<td colspan="3">Total：</td>
+				<td></td>
+			</tr>
+		</tbody>
+		
+		</table>
+	</body>
+</html>
