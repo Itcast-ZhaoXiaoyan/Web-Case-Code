@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>修改元素内容innerHTML__实现开关门效果</title>
+		<style>
+			div{
+				float: left;
+				height: 100px;	line-height: 100px;
+			}
+			#d1,#d3{
+				background-color:#ccff00 ;
+			}
+			#d2{
+				cursor: pointer;
+				background-color: #ffcc00;
+			}
+		</style>
+		<script>
+			function toggle(d2){
+				//如果是<<
+				if(d2.innerHTML=="&lt;&lt;"){
+					//	d2的内容改为>>
+					d2.innerHTML=="&gt;&gt;";
+					//	找到旁边的d1，隐藏
+					document.querySelector("#d1").style.display="none";
+				}
+				
+				
+				//否则
+				else{
+					//	d2的内容改为<<
+					d2.innerHTML="&lt;&lt;";
+					//	找到旁边的d1，显示出来
+					document.querySelector("#d1").style.display="block";
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1">树形列表</div>
+		<div id="d2" onclick="toggle(this)">&lt;&lt;</div>
+		<div id="d3">内容的主体</div>
+	</body>
+</html>
