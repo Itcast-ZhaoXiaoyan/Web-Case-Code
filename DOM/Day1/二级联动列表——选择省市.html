@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>二级联动列表</title>
+		<style>
+			.hide{display: none;}
+		</style>
+		<script>
+			//级联下拉列表知识点：
+				//1.
+			
+			/*实现“省”和“市”的级联下拉列表*/
+			var cities=[[],  //0号下标没有元素
+			[{"name":'东城区',"value":101},
+			 {"name":'西城区',"value":102},
+ 			 {"name":'海淀区',"value":103},
+			 {"name":'朝阳区',"value":104}
+			],
+			[{"name":'河东区',"value":201},
+ 			 {"name":'河西区',"value":202},
+             {"name":'南开区',"value":303}
+			],
+			[{"name":'石家庄市',"value":301},
+ 			 {"name":'廊坊市',"value":302},
+ 			 {"name":'保定市',"value":303},
+ 			 {"name":'唐山市',"value":304},
+ 			 {"name":'秦皇岛市',"value":304}]
+		  ];
+		
+		//加载城市
+		function loadCities(i){
+			//先找到cities select对象，保存在selectCities中
+			var selectCities=document.querySelector("select[name='cities']");
+			
+			//step1：获得城市子数组
+			//先判断cities的长度是否等于0，若等于0，则将cities select元素的className设置为hide
+			if(cities[i].length){
+				selectCities.className="hide";
+		//重构——把冗余的代码进行结构化，并不会反复渲染。
+			}
+			else{//将获得城市数组，追加到cities select中
+			//清空cities select中所有节点
+				selectCities.innerHTML="";
+				
+				//创建一个文档片段
+				var frag=document.createDocumentFragment();
+				//遍历数组中的每个城市
+				for(var n=0;n<cities[i].length;n++){
+					//	每遍历一个就创建一个option对象
+					var opt=document.createElement("option")
+					//	设置option对象的内容为城市的name
+					opt.innerHTML=cities[i][n].name;
+					//	设置option对象的value为城市的value
+					opt.value=cities[i][n].value;
+					//	将option追加到cities select中
+					frag.appendChild(opt);
+				}
+				//(遍历结束后)
+				//将文档片段整体追加到selectCities中
+				selectCities.appendChild(frag);
+				//清除selectCities的class中
+				selectCities.className="";
+			}
+		}
+		 
+		window.$=function(selector){
+			return document.querySelectorAll(selector);
+		}
+		
+		function show(i){
+			var prov=$("select[name='provs'] option")[$("select[name='provs']")[0].selectedIndex].innerHTML;
+			var cities=$("select[name='cities'] option")[i].innerHTML;
+			alert("您选中的是："+prov+" "+city);
+		}
+		</script>
+	</head>
+	<body>
+		<select name="provs" onchange="loadCities(this.selectedIndex)">
+			<option>——请选择——</option>
+			<option>北京市</option>
+			<option>天津市</option>
+			<option>河北省</option>
+		</select>
+		
+		<select name="cities" class="hide"></select>
+	</body>
+</html>
