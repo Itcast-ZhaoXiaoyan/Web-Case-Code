@@ -1,0 +1,170 @@
+1、作用域+函数
+A.作用域
+是由function进行声明的，而不是代码块。
+（1）声明的作用域创建于代码块，但不是终止于代码块。、
+（2）变量的声明开始于声明的地方，结束于所在函数的结尾，与代码嵌套无关。
+（3）命名函数的作用域是指声明该函数的整个函数范围，与代码嵌套无关。
+（4）作用域声明，全局上下文就像一个包含页面所有代码的超大型函数。
+  //外部函数名
+  Function outer(){
+    Var a=1;
+    //内部函数名；
+    Function inner(){
+      //三个数字变量a、b、c
+      Var b=2;
+      If(a==1){
+        Var c=3;
+      }
+     }
+    }
+  //调用外部函数
+  Outer(); 
+
+——测试代码块
+    Assert(true,”some descriptive text”);
+    Assert(typeof outer ==’function’,”outer() is in scope”);
+               Assert(typeof inner == ‘function’, “inner() is in scope”);
+    Assert(typeof a === ‘number’,”a is in scope”);
+    Assert(typeof b === ‘number’,”b is in scope”);
+    Assert(typeof c === ‘number’,”c is in scope”);
+
+注意：
+（1）函数可以提前声明，但是变量不行。
+（2）每个声明项的作用域不仅取决于它的声明，还取决于它是变量还是函数。
+
+ B.函数
+（1）函数调用——this参数的创建中
+有4种方式进行函数调用：
+    B1：作为一个函数进行调用（较为简单）
+    B2：作为一个方法进行调用，在对象上进行调用，支持面向对象编程
+    B3：作为构造器constructor进行调用，创建一个新的对象
+    B4：通过apply()、call()进行调用（较为复杂 ）
+除了最后一种的函数调用，其他的三个方法函数调用通过表达式
+      Expression(arg1,arg2)
+（2）从参数到函数形参
+有两种情况：
+B1：若实际传递参数（实参）> 函数声明时候的形参，
+    则超出的参数不会分配给形参名称
+B2：若声明的形参数量（形参）> 实际传递的参数名称，
+    则没有对应参数的形参会被赋值为undefined。
+
+注意：所有的函数调用都会传递2个隐式参数：arguments、this
+（a）Arguments——实际传入的参数集合
+    传递给函数参数的所有参数的一个集合，有属性值为length
+    可通过索引进行获取，即下标arguments[i]  “类数组结构”
+（b）This——作为函数上下文的对象引用
+    this参数引用了与该函数调用进行隐式关联的一个对象，
+        在java面向对象编程中，this被称为“函数上下文”，它是方法声明所在类的一个实例，它依赖于函数的声明；
+        在javascript面向函数式编程中，this被称为“调用上下文”，它更依赖于函数的调用方式。
+
+（3）函数调用实例
+3-1：作为函数进行调用
+    Function ninja(){}
+    Ninja();
+
+    Var samurai = function(){};
+    Samurai();
+3-2：作为方法进行调用
+当一个函数被赋值给对象的一个属性，并使用引用该函数的这个属性进行调用时，那么函数就是作为该对象的一个方法进行调用的。
+    Var o ={}；
+    O.whatever =function(){};
+    O.whatever();
+注意：一个方法所属的对象在该方法体内可以以this的形式进行引用。将函数作为对象的一个方法进行调用时，该对象就会变为函数上下文，并且在函数内部可以以this参数的形式进行访问。
+
+作为函数调用 && 作为方法调用
+二者对比，会发现“作为函数”进行调用所指的函数是定义在window上的，且调用的时候不必需要window的一个引用了。函数“属于”window，window则作为函数上下文，与上述示例中的对象o作为函数上下文是一样的道理。
+      <script type=”text/javascript”>
+          //定义一个函数并返回函数上下文。在函数调用之后，可在函数外部测试该函数上下文；
+            Function creep(){return this;}
+            Assert(creep() === window,”creeping in the window”);
+            //将函数引用赋值给sneak，使用sneak变量调用该函数，即便是使用变量进行调用，该函数也是作为函数进行调用的，且该函数上下文还是window
+            Var sneak = creep;
+            Assert(sneak() === window,”Sneaking in the window”);
+            //创建一个ninja1对象，然后为该对象创建一个speak属性，并将其引用到原来的creep()
+            Var ninja1={
+            Speak:creep;
+            };
+          //通过speak属性调用该函数，因此该调用是作为ninja1的一个方法进行调用的
+          Assert(ninja1.speak() === ninja1,”the 1st ninja is speak”);
+          Var ninja2={
+            Speak:creep;
+          };
+          //作为ninja2的一个方法进行调用，此时的函数上下文变为了ninja2
+          Assert(ninja2.speak() === ninja2,”the 2nd ninja is speak”);
+      </script>
+ 3-3：作为构造器进行函数调用
+      这种方法进行调用时，要在函数调用前使用new关键字。
+      Function creep(){return this;}
+      New creep();
+  实例：利用构造器设置通用对象
+      <script type=”text/javascript”>
+          //声明一个构造器，该构造器在函数上下文对象上创建一个skulk属性，该属性又返回了上下文自身，从而便于外部测试
+          Function Ninja(){
+            This.skulk =function(){
+                return this;
+            };
+          }
+          //通过new关键字调用构造器分别创建2个对象
+          Var ninja1=new Ninja();
+          Var ninja2=new Ninja();
+          //对所构造出的方法进行测试，每个方法返回值是构造对象本身
+          Assert(ninja1.skulk() === ninja1,”the 1st ninja is skulking”);
+          Assert(ninja2.skulk() === ninja1,”the 2nd ninja is skulking”);
+      </script>
+解析——在进行new关键字创建时，是一个空的对象实例，并作为this参数传递给该函数。
+注意：
+  构造器的目的是通过函数调用初始化创建新的对象，函数和方法的命名一般以动词开头，且以小写字母开头；而构造器的命名通常是以一个描述所构造对象的名词来描述，并且以大写字母开头。
+总结：
+  （1）作为方法进行调用，该上下文是方法的拥有者；
+  （2）作为全局函数调用，其上下文永远是window（函数是window一个方法）
+  （3）作为构造器调用，其上下文则是新创建的对象实例。
+  （4）通过apply()和call()方法进行调用时，上下文可以设置任意值。
+3-4：apply()和call()方法
+  作用：可以显式指定任何一个对象作为其函数上下文。在javascript中，每个函数都有apply()和call()方法，使用任一方法，均可实现该功能。
+  3-4.1：apply()有两个参数，一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组
+  3-4.2：call()与apply()相似，给函数传入的参数是一个参数列表，而不是的单个数组。
+
+实例：使用apply()和call()方法指定函数上下文
+<script type=”text/javascript”>
+        //定义一个函数
+      Function juggle(){
+          //初始化结果
+          Var result=0;
+          //收集参数
+          For(var n=0;n<arguments.length;n++){
+              Result += arguments[i];
+          }
+          //在上下文保存结果
+          This.result=result;
+      }
+      //创建测试对象
+      Var ninja1={};
+      Var ninja2={};
+      
+      //使用apply()、call()执行函数
+      Juggle.apply(ninja1,[1,2,3,4]);
+      Juggle.call(ninja2,5,6,7,8);
+      
+      //对结果进行验证
+      Assert(ninja1.result === 10,”juggled via apply”);
+      Assert(ninja2.result === 26,”juggled via call”);
+</script>
+
+3-4.3：在回调中强制指定函数上下文
+<script type=”text/javascript”>
+  Function foreach(list,callback){
+    For(var n=0;n<arguments.length;n++){
+        //调用callback回调
+        Callback.call(list[n],n); //call()方法参数列表传递
+    }
+  }
+  //创建测试对象
+  Var weapons = [‘aa’,’bb’,’cc’];
+  forEach(     
+  //对foreach函数进行测试
+  Weapons,
+  Function(index){
+  Assert(this==weapons[index],”Got the expected value of”+weapons[index]);
+}
+</script>
+
