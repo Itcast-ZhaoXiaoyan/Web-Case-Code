@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var myStyle={
+				fontSize:100,
+				color:'#ff0000'
+			};
+			
+			ReactDOM.render(
+				<h1 style={myStyle}>菜鸟教程</h1>,
+				document.getElementById('example')
+			);
+		</script>
+	</body>
+</html>
